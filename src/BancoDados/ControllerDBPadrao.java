@@ -1,0 +1,30 @@
+package BancoDados;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ControllerDBPadrao {
+
+    public int getUltimoCodigo(String tabela, String coluna) {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        int id = 0;
+        try {
+            conn = Conexao.getConexao();
+            stmt = conn.createStatement();
+            String sequence = tabela + "_" + coluna + "_seq";
+            rs = stmt.executeQuery("select nextval('public." + sequence + "') as codigo");
+            while (rs.next()) {
+                id = rs.getInt("codigo");
+            }
+        } catch (SQLException erro) {
+            System.out.println("Erro de conexão! " + erro);
+        } finally {
+            Conexao.closeAll(conn);
+        }
+        return id;
+    }
+}
