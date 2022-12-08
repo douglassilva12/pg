@@ -261,8 +261,8 @@ public class Cad_Status extends javax.swing.JInternalFrame {
         if (auxID.equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha o ID!!");
         } else {
-            int ID = Integer.parseInt(auxID);
-            if (ID > 0) {
+            int id = Integer.parseInt(auxID);
+            if (id > 0) {
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Preencha o ID!!");

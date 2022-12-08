@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.ModelCpm;
 
@@ -14,7 +15,7 @@ public class ControllerCpmDB extends ControllerDBPadrao {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
-        ModelCpm pveBancoDados = new ModelCpm();
+        ModelCpm cpmBancoDados = new ModelCpm();
         try {
             conn = Conexao.getConexao();
             stmt = conn.createStatement();
@@ -29,15 +30,15 @@ public class ControllerCpmDB extends ControllerDBPadrao {
                 int idBancoDados = rs.getInt("cpmid");
                 String multiplicarBancoDados = rs.getString("cpmmultiplicar");
                 // Setar no modelo
-                pveBancoDados.setId(idBancoDados);
-                pveBancoDados.setMultiplicar(multiplicarBancoDados);
+                cpmBancoDados.setId(idBancoDados);
+                cpmBancoDados.setMultiplicar(multiplicarBancoDados);
             }
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro de conexão! " + erro);
         } finally {
             Conexao.closeAll(conn);
         }
-        return pveBancoDados;
+        return cpmBancoDados;
     }
 
     public boolean gravarAlteracao(ModelCpm cpm) {
@@ -88,5 +89,68 @@ public class ControllerCpmDB extends ControllerDBPadrao {
             Conexao.closeAll(conn);
         }
         return executou;
+    }
+
+    private static final String sqlTodos = "select * from public.tbcpm order by cpmid";
+
+    public ArrayList<ModelCpm> getTodos() {
+        ArrayList listaDados = new ArrayList();
+
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = Conexao.getConexao();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sqlTodos);
+
+            while (rs.next()) {
+                // Pega valor inteiro
+                int id = rs.getInt("cpmid");
+
+                // Pega valores String(texto)
+                String multiplicar = rs.getString("cpmmultiplicar");
+
+                ModelCpm cpm = new ModelCpm(id, multiplicar);
+
+                listaDados.add(cpm);
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro no sql, getTodos():\n" + erro.getMessage());
+        } finally {
+            Conexao.closeAll(conn);
+        }
+        return listaDados;
+    }
+
+    public ArrayList<ModelCpm> getMulti(String todosCpm) {
+        String sqlNumero = "select cpmmultiplicar,cpmid from public.tbcpm where cpmid < '" + todosCpm + "' order by cpmid";
+        ArrayList listaDados = new ArrayList();
+
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = Conexao.getConexao();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sqlNumero);
+
+            while (rs.next()) {
+                // Pega valor inteiro
+                int id = rs.getInt("cpmid");
+
+                // Pega valores String(texto)
+                String multiplicar = rs.getString("cpmmultiplicar");
+
+                ModelCpm cpm = new ModelCpm(id, multiplicar);
+
+                listaDados.add(cpm);
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro no sql, getMulti():\n" + erro.getMessage());
+        } finally {
+            Conexao.closeAll(conn);
+        }
+        return listaDados;
     }
 }

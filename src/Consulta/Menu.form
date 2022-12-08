@@ -64,21 +64,41 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ConsultaPvEActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7ConsultaPvP">
+            <Menu class="javax.swing.JMenu" name="jMenuItem7ConsultaPvP">
               <Properties>
                 <Property name="text" type="java.lang.String" value="PvP"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ConsultaPvPActionPerformed"/>
-              </Events>
-            </MenuItem>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7ConsultaPvP500">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="PvP 500"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ConsultaPvP500ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7ConsultaPvP1500">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="PvP 1500"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ConsultaPvP1500ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7ConsultaPvP2500">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="PvP 2500"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ConsultaPvP2500ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8ConsultaTipagem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tipagem"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem8ConsultaTipagemActionPerformed"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

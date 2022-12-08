@@ -1,8 +1,9 @@
 package model;
 
 public class ModelCpm {
-    private int id;
-    private String multiplicar;
+
+    int id;
+    String multiplicar;
 
     public ModelCpm() {
     }
